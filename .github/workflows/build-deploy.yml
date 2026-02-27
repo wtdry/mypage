@@ -43,7 +43,7 @@ jobs:
       - name: Sync posts into Hugo content/blog
         run: |
           mkdir -p content/blog
-          rsync -av --delete _src_myblog/post/ content/blog/
+          rsync -av --delete _src_myblog/blog/ content/blog/
 
       - name: Build site
         run: hugo --minify
