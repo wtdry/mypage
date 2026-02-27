@@ -1,0 +1,7 @@
+baseURL = "https://wtdry.github.io/"
+languageCode = "zh-cn"
+title = "wtdry blog"
+theme = "mytheme"
+
+[permalinks]
+  blog = "/blog/:slug/"

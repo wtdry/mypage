@@ -1,0 +1,61 @@
+name: Build & Deploy Hugo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: hugo-deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mypage (this repo)
+        uses: actions/checkout@v4
+
+      - name: Checkout myblog (posts)
+        uses: actions/checkout@v4
+        with:
+          repository: wtdry/myblog
+          ref: main
+          path: _src_myblog
+          fetch-depth: 1
+
+      - name: Checkout mytheme (theme)
+        uses: actions/checkout@v4
+        with:
+          repository: wtdry/mytheme
+          ref: main
+          path: themes/mytheme
+          fetch-depth: 1
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.125.7"
+          extended: true
+
+      - name: Sync posts into Hugo content/blog
+        run: |
+          mkdir -p content/blog
+          rsync -av --delete _src_myblog/post/ content/blog/
+
+      - name: Build site
+        run: hugo --minify
+
+      - name: Deploy to wtdry/wtdry.github.io
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: |
+          cd public
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy $(date -u +'%Y-%m-%dT%H:%M:%SZ')" || exit 0
+          git branch -M main
+          git remote add origin https://x-access-token:${DEPLOY_TOKEN}@github.com/wtdry/wtdry.github.io.git
+          git push -f origin main
