@@ -23,6 +23,7 @@ jobs:
           ref: main
           path: _src_myblog
           fetch-depth: 1
+          token: ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Checkout mytheme (theme)
         uses: actions/checkout@v4
@@ -31,6 +32,7 @@ jobs:
           ref: main
           path: themes/mytheme
           fetch-depth: 1
+          token: ${{ secrets.DEPLOY_TOKEN }}
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
