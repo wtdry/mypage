@@ -5,7 +5,7 @@ theme = "mytheme"
 
 [params]
   homeIntro = "碎碎念念，烙印当下的我。"
-  footerQuote = "不学无术，旁支末学。"
+  footerQuote = "旁支末学，不学无术。"
 
   [params.social]
     email = "fun@0vo.me"
