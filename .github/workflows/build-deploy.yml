@@ -54,7 +54,7 @@ jobs:
           node-version: "20"
 
       - name: Build search index with Pagefind
-        run: npx pagefind --site public
+        run: npx pagefind --site public --glob "blog/**/*.html"
 
       - name: Deploy to wtdry/wtdry.github.io
         env:
