@@ -54,7 +54,7 @@ jobs:
           node-version: "20"
 
       - name: Build search index with Pagefind
-        run: npx pagefind --site public --glob "blog/**/*.html"
+        run: npx pagefind --site public
 
       - name: Add .nojekyll file
         run: touch public/.nojekyll
