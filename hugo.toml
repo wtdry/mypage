@@ -3,5 +3,13 @@ languageCode = "zh-cn"
 title = "旁知's Blog"
 theme = "mytheme"
 
+[params]
+  homeIntro = "碎碎念念，烙印当下的我。"
+  footerQuote = "不学无术，旁支末学。"
+
+
 [permalinks]
   blog = "/blog/:slug/"
+
+[taxonomies]
+  tag = "tags"
