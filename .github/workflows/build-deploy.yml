@@ -48,6 +48,14 @@ jobs:
       - name: Build site
         run: hugo --minify
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build search index with Pagefind
+        run: npx pagefind --site public
+
       - name: Deploy to wtdry/wtdry.github.io
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
