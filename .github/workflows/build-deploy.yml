@@ -56,6 +56,9 @@ jobs:
       - name: Build search index with Pagefind
         run: npx pagefind --site public --glob "blog/**/*.html"
 
+      - name: Add .nojekyll file
+        run: touch public/.nojekyll
+
       - name: Deploy to wtdry/wtdry.github.io
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
