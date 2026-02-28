@@ -7,6 +7,9 @@ theme = "mytheme"
   homeIntro = "碎碎念念，烙印当下的我。"
   footerQuote = "不学无术，旁支末学。"
 
+  [params.social]
+    email = "fun@0vo.me"
+
 
 [permalinks]
   blog = "/blog/:slug/"
